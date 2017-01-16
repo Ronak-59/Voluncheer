@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/colourful"
+    android:label="@string/interests"
+    tools:context="com.sourcey.materiallogindemo.Interests">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <TextView
+        android:text=" Please select your Interests :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:id="@+id/textView7"
+        android:layout_alignParentTop="true"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textStyle="normal|bold" />
+
+    <CheckBox
+        android:text="Social Awareness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="43dp"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        app:buttonTint="@android:color/white"
+        android:textSize="25sp" />
+
+    <CheckBox
+        android:text="Environmental Awareness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox3"
+        android:textSize="25sp"
+        android:layout_below="@+id/checkBox2"
+        android:layout_alignLeft="@+id/checkBox2"
+        android:layout_alignStart="@+id/checkBox2"
+        android:layout_marginTop="17dp"
+        app:buttonTint="@android:color/white" />
+
+    <CheckBox
+        android:text="Donation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/checkBox2"
+        android:textSize="25sp"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignLeft="@+id/checkBox"
+        android:layout_alignStart="@+id/checkBox"
+        app:buttonTint="@android:color/white" />
+
+    <CheckBox
+        android:text="Corporate Events"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox4"
+        android:textSize="25sp"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/checkBox3"
+        android:layout_alignLeft="@+id/checkBox3"
+        android:layout_alignStart="@+id/checkBox3"
+        app:buttonTint="@android:color/white" />
+
+    <CheckBox
+        android:text="Others"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox4"
+        android:layout_alignLeft="@+id/checkBox4"
+        android:layout_alignStart="@+id/checkBox4"
+        android:layout_marginTop="20dp"
+        android:id="@+id/checkBox7"
+        android:textSize="25sp"
+        android:checked="false"
+        app:buttonTint="@android:color/white" />
+
+    <Button
+        android:text="Done"
+        android:layout_marginTop="18dp"
+        android:id="@+id/button2"
+        android:textSize="20sp"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/checkBox7"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

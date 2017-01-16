@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_events"
+            android:icon="@drawable/ic_event_black"
+            android:title="Events" />
+        <item
+            android:id="@+id/nav_trends"
+            android:icon="@drawable/ic_trending_up_black"
+            android:title="Trends" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Gallery" />
+        <item
+            android:id="@+id/nav_interests"
+            android:icon="@drawable/ic_format_list"
+            android:title="Interests" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_notif"
+                android:icon="@drawable/ic_notifications"
+                android:title="Notifications" />
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_phone"
+                android:title="Contact Us" />
+            <item
+                android:id="@+id/nav_privacy"
+                android:icon="@drawable/ic_assignment"
+                android:title="Privacy Policy" />
+
+        </menu>
+    </item>
+
+</menu>

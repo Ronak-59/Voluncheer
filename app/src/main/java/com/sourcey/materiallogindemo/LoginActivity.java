@@ -1,56 +1,183 @@
 package com.sourcey.materiallogindemo;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import butterknife.ButterKnife;
-import butterknife.Bind;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "LoginActivity";
-    private static final int REQUEST_SIGNUP = 0;
 
-    @Bind(R.id.input_email) EditText _emailText;
-    @Bind(R.id.input_password) EditText _passwordText;
-    @Bind(R.id.btn_login) Button _loginButton;
-    @Bind(R.id.link_signup) TextView _signupLink;
-    
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
+    private static int RC_SIGN_IN = 0;
+    public String Username;
+    public String Emailxyz;
+
+
+    public void signIn(){
+
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.d(TAG, "Connection failed");
+    }
+
+    private static String TAG = "LOGIN_ACTIVITY";
+   private GoogleApiClient mGoogleApiClient;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
-        
-        _loginButton.setOnClickListener(new View.OnClickListener() {
+        // ButterKnife.bind(this);
+        mAuth = FirebaseAuth.getInstance();
+        {
+
+
+
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build();
+
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .enableAutoManage(this, this)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
+
+            findViewById(R.id.sign_in_button).setOnClickListener(this);
+            //findViewById(R.id.sign_out_button).setOnClickListener(this);
+
+
+       /* _loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 login();
             }
-        });
+        }*/
 
-        _signupLink.setOnClickListener(new View.OnClickListener() {
+            ;
+        }
 
-            @Override
-            public void onClick(View v) {
-                // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
-                finish();
-                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-            }
-        });
+
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RC_SIGN_IN){
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+
+            if(result.isSuccess()) {
+                final GoogleSignInAccount account = result.getSignInAccount();
+
+
+                firebaseAuthWithGoogle(account);
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference Users = database.getReference("Users");
+                // DatabaseReference Volunteer = database.getReference("Name");
+                Username = account.getDisplayName();
+
+
+                Emailxyz=account.getEmail();
+                Users.child("Volunteer").child("Num").addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String str = dataSnapshot.getValue(String.class);
+                        long l = Long.parseLong(str);
+                        long t;
+                        for(t=0;t<l;t++) {
+                            String xyz = Long.toString(t);
+                            if ((Users.child("Volunteer").child(xyz).child("Email")).equals(Emailxyz)) {
+                                break;
+                            }
+                        }
+                            if(t==l){
+                            Users.child("Volunteer").child(str).child("Name").setValue(Username);
+                            Users.child("Volunteer").child(str).child("Age").setValue(19);
+                            Users.child("Volunteer").child(str).child("Email").setValue(account.getEmail());
+                            Users.child("Volunteer").child(str).child("GoogleProfileId").setValue(account.getId());
+                            Users.child("Volunteer").child(str).child("ProfilePic").setValue(account.getPhotoUrl().toString());
+                            Users.child("Volunteer").child(str).child("Interests").child("Animal Welfare").setValue(true);
+                            Users.child("Volunteer").child(str).child("Interests").child("Blood Donation").setValue(false);
+                            str = str.valueOf(++l);
+                            Users.child("Volunteer").child("Num").setValue(str);
+                        }
+
+                    }
+
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+
+                });
+
+                Intent intent = new Intent(this, Navigation.class);
+                startActivity(intent);
+                ;
+                //l=Long.parseLong(Users.child("Volunteer").child("Num").getKey());
+                //String str="";
+
+            }
+
+            }
+            else if (resultCode == RESULT_CANCELED){
+                //User not Authenticated
+                Log.d("AUTH", "NOT AUTHENTICATED");
+                finish();
+            }
+            else{
+                Log.d(TAG, "Google Login Failed");
+            }
+
+
+        }
+
+
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct){
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d("AUTH", "signInWithCredential:oncomplete: " + task.isSuccessful());
+                    }
+                });
+    }
+    /*
     public void login() {
         Log.d(TAG, "Login");
 
@@ -134,5 +261,16 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+    */
+    @Override
+    public void onClick(View view) {
+        switch(view.getId())
+        {
+            case R.id.sign_in_button:
+                signIn();
+                break;
+
+        }
     }
 }

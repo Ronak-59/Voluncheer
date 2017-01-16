@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    android:background="@drawable/navheadbackground"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:textStyle="bold"
+        android:gravity="left"
+        android:paddingBottom="4dp"
+        android:layout_alignTop="@+id/email" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voluncheer"
+        android:id="@+id/email"
+        android:layout_marginBottom="10dp"
+        android:textSize="30sp"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/username"
+        android:layout_alignStart="@+id/username"
+        android:gravity="center"
+        android:paddingLeft="0dp"
+        android:layout_marginLeft="65dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:src="@drawable/icon"
+        app:border_color="#FF000000"
+        android:layout_marginBottom="10dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/email"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/profilephoto"/>
+
+
+</RelativeLayout>

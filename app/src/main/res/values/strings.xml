@@ -1,6 +1,53 @@
 <resources>
-    <string name="app_name">Material Login Example</string>
+    <string name="app_name">Voluncheer</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Log Out</string>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="facebook_application_id" translatable="true">208354482925041</string>
+    <string name="facebook_login_protocol_scheme" translatable="true">208354482925041</string>
+
+
+    <string name="title_activity_splash__screen">Splash_Screen</string>
+    <string name="title_activity_events">EventsActivity</string>
+    <string name="title_activity_navigation">Voluncheer</string>
+    <string name="events">Events</string>
+    <string name="gallery">Gallery</string>
+    <string name="trends">Trends</string>
+    <string name="about">About</string>
+    <string name="privacypolicy">Privacy Policy</string>
+    <string name="interests">Your Interests</string>
+    <string name="notifications">Notifications</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="image_ids">
+        <item>@drawable/image_1</item>
+        <item>@drawable/image_2</item>
+        <item>@drawable/image_3</item>
+        <item>@drawable/image_4</item>
+        <item>@drawable/image_5</item>
+        <item>@drawable/image_6</item>
+        <item>@drawable/image_7</item>
+        <item>@drawable/image_8</item>
+        <item>@drawable/image_9</item>
+        <item>@drawable/image_1</item>
+        <item>@drawable/image_2</item>
+        <item>@drawable/image_3</item>
+        <item>@drawable/image_4</item>
+        <item>@drawable/image_5</item>
+        <item>@drawable/image_6</item>
+        <item>@drawable/image_7</item>
+        <item>@drawable/image_8</item>
+        <item>@drawable/image_9</item>
+    </string-array>
+
 </resources>

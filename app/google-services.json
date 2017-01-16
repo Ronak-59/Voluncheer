@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "314389648537",
+    "firebase_url": "https://voluncheer-d330e.firebaseio.com",
+    "project_id": "voluncheer-d330e",
+    "storage_bucket": "voluncheer-d330e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314389648537:android:e60aeff65cae8072",
+        "android_client_info": {
+          "package_name": "com.sourcey.materiallogindemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314389648537-8bgufa1nbnf6h4p8mv1h3frnjrj3tkpo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sourcey.materiallogindemo",
+            "certificate_hash": "2FFCB0C99A383F25A867EAFE4F80A28DB11CD5E4"
+          }
+        },
+        {
+          "client_id": "314389648537-krdnrr41q6ne57hcauphsm6rd5rugn2l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrW8WfPpw6MT_k7VnDaTIuYzfzFo_KvJE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314389648537-krdnrr41q6ne57hcauphsm6rd5rugn2l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
