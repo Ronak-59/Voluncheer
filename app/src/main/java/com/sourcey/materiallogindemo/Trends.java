@@ -4,6 +4,7 @@ package com.sourcey.materiallogindemo;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -69,6 +70,7 @@ public class Trends extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -81,7 +83,9 @@ public class Trends extends AppCompatActivity implements View.OnClickListener {
 
 
         }
+
     }
+
 
     @Override
     public void onClick(View view) {
@@ -111,6 +115,8 @@ public class Trends extends AppCompatActivity implements View.OnClickListener {
                     // Enable Javascript
                     WebSettings webSettings = mWebView.getSettings();
                     webSettings.setJavaScriptEnabled(true);
+                    mWebView.getSettings().setBuiltInZoomControls(true);
+
 
                     // Force links and redirects to open in the WebView instead of in a browser
                     mWebView.setWebViewClient(new WebViewClient());
@@ -120,7 +126,7 @@ public class Trends extends AppCompatActivity implements View.OnClickListener {
                     dialog.setIndeterminate(true);
                     dialog.setCanceledOnTouchOutside(false);
                     dialog.show();
-                    timerDelayRemoveDialog(60000,dialog);
+                    timerDelayRemoveDialog(40000,dialog);
 
 
                 }
@@ -130,6 +136,7 @@ public class Trends extends AppCompatActivity implements View.OnClickListener {
 
 
     }
+
     private void uploadFile() {
         //if there is a file to upload
         if (filePath != null) {
@@ -178,6 +185,7 @@ public class Trends extends AppCompatActivity implements View.OnClickListener {
         else {
             Toast.makeText(getApplicationContext(), "Error : File not Selected!", Toast.LENGTH_LONG).show();
         }
+
     }
     public void timerDelayRemoveDialog(long time, final Dialog d){
         Handler handler = new Handler();
@@ -188,4 +196,8 @@ public class Trends extends AppCompatActivity implements View.OnClickListener {
         }, time);
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig){
+        super.onConfigurationChanged(newConfig);
+    }
 }

@@ -21,6 +21,7 @@
     <string name="privacypolicy">Privacy Policy</string>
     <string name="interests">Your Interests</string>
     <string name="notifications">Notifications</string>
+    <string name="map_api_key">AIzaSyAKK41gqs9bBW1TpVfNHEyGIEpyC8g9C60</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
